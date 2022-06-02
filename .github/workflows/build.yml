@@ -29,7 +29,9 @@ jobs:
       with:
         version: '1.4.0'
     - name: make
-      run: make
+      run: |
+        make
+        make check-diff
 
     - uses: release-drafter/release-drafter@v5
       env:
