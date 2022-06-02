@@ -16,5 +16,5 @@ test:
 	go test -v ./...
 
 .PHONY: check-diff
-check-diff: spec
+check-diff:
 	git diff --exit-code
