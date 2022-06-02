@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package metalstack.io.s3.api.v1;
+
+option go_package = "pkg/apis/v1";
+
+message Empty {}
+
+message S3UserKey {
+  string access_key = 1;
+  string secret_key = 2;
+}

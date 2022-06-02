@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package metalstack.io.s3.api.v1;
+
+import "metalstack/io/s3/api/v1/common.proto";
+
+option go_package = "pkg/apis/v1";
+
+service S3PartitionService {
+  rpc List(Empty) returns (S3PartitionListResponse);
+}
+
+message S3Partition {
+  string id = 1;
+  bool ready = 2;
+  string storage_endpoint = 3;
+}
+
+message S3PartitionResponse {
+  S3Partition partition = 1;
+}
+
+message S3PartitionListResponse {
+  repeated S3PartitionResponse partitions = 1;
+}
