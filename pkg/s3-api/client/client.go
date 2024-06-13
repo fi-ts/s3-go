@@ -9,7 +9,6 @@ import (
 	v1 "github.com/fi-ts/s3-go/pkg/apis/v1"
 	healthv1 "google.golang.org/grpc/health/grpc_health_v1"
 
-	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 )
@@ -25,7 +24,7 @@ type client struct {
 	conn *grpc.ClientConn
 }
 
-func NewClient(ctx context.Context, hostname string, port int, certFile string, keyFile string, caFile string) (S3Client, error) {
+func NewClient(hostname string, port int, certFile string, keyFile string, caFile string) (S3Client, error) {
 	address := fmt.Sprintf("%s:%d", hostname, port)
 
 	certPool, err := x509.SystemCertPool()
@@ -60,10 +59,9 @@ func NewClient(ctx context.Context, hostname string, port int, certFile string, 
 	opts := []grpc.DialOption{
 		grpc.WithTransportCredentials(creds),
 		grpc.WithTransportCredentials(creds),
-		grpc.WithBlock(),
 	}
 
-	conn, err := grpc.DialContext(ctx, address, opts...)
+	conn, err := grpc.NewClient(address, opts...)
 	if err != nil {
 		return nil, err
 	}
