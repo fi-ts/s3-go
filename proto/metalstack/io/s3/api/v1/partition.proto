@@ -14,6 +14,7 @@ message S3Partition {
   string id = 1;
   bool ready = 2;
   string storage_endpoint = 3;
+  string description = 4;
 }
 
 message S3PartitionResponse {
