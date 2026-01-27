@@ -10,11 +10,19 @@ service S3PartitionService {
   rpc List(Empty) returns (S3PartitionListResponse);
 }
 
+enum Classification {
+  CLASSIFICATION_UNSPECIFIED = 0;
+  CLASSIFICATION_PREVIEW = 1;
+  CLASSIFICATION_SUPPORTED = 2;
+  CLASSIFICATION_DEPRECATED = 3;
+}
+
 message S3Partition {
   string id = 1;
   bool ready = 2;
   string storage_endpoint = 3;
   string description = 4;
+  Classification classification = 5;
 }
 
 message S3PartitionResponse {
